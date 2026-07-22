@@ -56,3 +56,23 @@ exports.monthlyexpense=async(req,res)=>{
         res.send(`Nothing Expense Found in the ${month}`)
 
     }}
+exports.deleteExpense=async(req,res)=>{
+    try{
+    const {id} =req.params
+    const removeitem=await UserExpense.findOneAndDelete({_id:id})
+    console.log(removeitem)
+    
+        if (!removeitem){
+        res.send("Expense not found")
+    }
+    else{
+        res.send("Expense Deleted Successfully")
+    }
+    
+}
+    catch(err){
+        res.send(`Error: ${err.message}`)
+    }
+
+
+}
