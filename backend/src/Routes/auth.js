@@ -1,6 +1,6 @@
 const authRouter=require("express").Router();
 const UserInfo=require("../Models/user")
-const validator = require('validator');
+const ValidateSignUpData=require("../Utils/validate")
 const bcrypt=require("bcrypt")
 
 

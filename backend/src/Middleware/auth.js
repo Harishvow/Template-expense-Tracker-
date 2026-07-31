@@ -4,8 +4,8 @@ const Userauth=async(req,res,next)=>{
         const authHeader=req.headers['authorization']
         const token=authHeader && authHeader.split(' ')[1]
         if (!token) {
-            res.status(401).send("please login")
-    }
+            res.status(401).send("no token,access denied")
+        }
     const decodetoken=jwt.decode(token)
     if(!decodetoken){
         res.status(401).send("Invalid token")

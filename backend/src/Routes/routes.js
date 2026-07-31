@@ -1,11 +1,13 @@
 const {addExpense,totalexpense,allexpense,monthlyexpense,deleteExpense}=require("../Controller/UserExpense")
 const Express=require("express");
 const router=Express.Router();
+const {Limiter,Userauth}=require('../Middleware/auth')
 
-router.post("/addExpense",addExpense);
-router.get("/totalexpense",totalexpense);
-router.get("/allexpense",allexpense)
-router.get("/monthlyexpense",monthlyexpense)
-router.delete("/delExpense/:id",deleteExpense)
+
+router.post("/addExpense",Userauth,Limiter,addExpense);
+router.get("/totalexpense",Userauth,Limiter,totalexpense);
+router.get("/allexpense",Userauth,Limiter,allexpense)
+router.get("/monthlyexpense",Userauth,Limiter,monthlyexpense)
+router.delete("/delExpense/:id",Userauth,Limiter,deleteExpense)
 
 module.exports=router;
